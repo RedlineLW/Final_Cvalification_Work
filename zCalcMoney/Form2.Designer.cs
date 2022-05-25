@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
             this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -49,6 +50,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroRadioButton1
@@ -212,7 +215,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(23, 282);
+            this.metroButton1.Location = new System.Drawing.Point(23, 272);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(145, 36);
             this.metroButton1.TabIndex = 11;
@@ -222,7 +225,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(23, 324);
+            this.metroButton2.Location = new System.Drawing.Point(23, 314);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(145, 36);
             this.metroButton2.TabIndex = 12;
@@ -232,7 +235,7 @@
             // 
             // metroLabel5
             // 
-            this.metroLabel5.Location = new System.Drawing.Point(185, 282);
+            this.metroLabel5.Location = new System.Drawing.Point(185, 272);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(592, 36);
             this.metroLabel5.TabIndex = 13;
@@ -241,7 +244,7 @@
             // 
             // metroButton3
             // 
-            this.metroButton3.Location = new System.Drawing.Point(23, 408);
+            this.metroButton3.Location = new System.Drawing.Point(23, 398);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(145, 36);
             this.metroButton3.TabIndex = 14;
@@ -278,7 +281,7 @@
             // 
             // metroLabel6
             // 
-            this.metroLabel6.Location = new System.Drawing.Point(185, 324);
+            this.metroLabel6.Location = new System.Drawing.Point(185, 314);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(592, 36);
             this.metroLabel6.TabIndex = 18;
@@ -296,7 +299,7 @@
             // 
             // metroButton4
             // 
-            this.metroButton4.Location = new System.Drawing.Point(23, 366);
+            this.metroButton4.Location = new System.Drawing.Point(23, 356);
             this.metroButton4.Name = "metroButton4";
             this.metroButton4.Size = new System.Drawing.Size(145, 36);
             this.metroButton4.TabIndex = 20;
@@ -311,12 +314,23 @@
             this.metroLabel7.Size = new System.Drawing.Size(100, 23);
             this.metroLabel7.TabIndex = 21;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(710, 408);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 36);
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroButton4);
             this.Controls.Add(this.listBox1);
@@ -344,6 +358,7 @@
             this.Text = "Расчёт заработной платы";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -371,5 +386,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private MetroFramework.Controls.MetroButton metroButton4;
         private MetroFramework.Controls.MetroLabel metroLabel7;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
