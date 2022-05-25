@@ -48,6 +48,7 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.metroButton4 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // metroRadioButton1
@@ -303,12 +304,20 @@
             this.metroButton4.UseSelectable = true;
             this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
             // 
+            // metroLabel7
+            // 
+            this.metroLabel7.Location = new System.Drawing.Point(655, 7);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(100, 23);
+            this.metroLabel7.TabIndex = 21;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroButton4);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.metroLabel6);
@@ -361,5 +370,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private System.Windows.Forms.ListBox listBox1;
         private MetroFramework.Controls.MetroButton metroButton4;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
     }
 }

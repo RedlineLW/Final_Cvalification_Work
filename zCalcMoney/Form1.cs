@@ -24,6 +24,7 @@ namespace zCalcMoney
         {
             if (loginBox.Text != "" && passwordBox.Text != "")
             {
+                messageLabel.Text = "";
                 string login = loginBox.Text;
                 string password = passwordBox.Text;
                 loginBox.WaterMarkColor = Color.FromArgb(105, 105, 105);
@@ -52,14 +53,12 @@ namespace zCalcMoney
                 }
                 else
                 {
-                    loginBox.WaterMarkColor = Color.FromArgb(255,55,55);
-                    passwordBox.WaterMarkColor = Color.FromArgb(255, 55, 55);
+                    messageLabel.Text = "Проверьте логин или пароль.";
                 }
             }
             else
             {
-                loginBox.WaterMarkColor = Color.FromArgb(255, 55, 55);
-                passwordBox.WaterMarkColor = Color.FromArgb(255, 55, 55);
+                messageLabel.Text = "Поля должны быть заполнены.";
             }
         }
     }
