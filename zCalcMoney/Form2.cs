@@ -136,7 +136,7 @@ namespace zCalcMoney
                     "'" + (bezavarii.ToString().Replace(',','.')) + "', " +
                     "'" + (zahard.ToString().Replace(',','.')) + "');";
                     mysql_connection.Open();
-                    MessageBox.Show(mysql_query.CommandText);
+                    //MessageBox.Show(mysql_query.CommandText);
                     MySqlDataReader mysql_result;
                     mysql_result = mysql_query.ExecuteReader();
                     metroLabel6.Text = "Данные добавлены!";
@@ -193,6 +193,8 @@ namespace zCalcMoney
             hourBox.Text = "";
             hourNightBox.Text = "";
             holHoursBox.Text = "";
+            metroLabel6.Text = "";
+            metroLabel5.Text = "Сумма: ";
 
             if (metroRadioButton1.Checked)
             {
@@ -218,6 +220,8 @@ namespace zCalcMoney
             hourBox.Text = "";
             hourNightBox.Text = "";
             holHoursBox.Text = "";
+            metroLabel6.Text = "";
+            metroLabel5.Text = "Сумма: ";
 
             if (metroRadioButton2.Checked)
             {

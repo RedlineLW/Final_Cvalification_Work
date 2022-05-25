@@ -34,6 +34,10 @@
             this.passwordBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.backLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.backLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.messageLabel = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // loginBox
@@ -51,7 +55,7 @@
             this.loginBox.CustomButton.UseSelectable = true;
             this.loginBox.CustomButton.Visible = false;
             this.loginBox.Lines = new string[0];
-            this.loginBox.Location = new System.Drawing.Point(111, 84);
+            this.loginBox.Location = new System.Drawing.Point(116, 74);
             this.loginBox.MaxLength = 32767;
             this.loginBox.Name = "loginBox";
             this.loginBox.PasswordChar = '\0';
@@ -68,7 +72,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(83, 172);
+            this.metroButton1.Location = new System.Drawing.Point(88, 162);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(162, 36);
             this.metroButton1.TabIndex = 1;
@@ -91,10 +95,10 @@
             this.passwordBox.CustomButton.UseSelectable = true;
             this.passwordBox.CustomButton.Visible = false;
             this.passwordBox.Lines = new string[0];
-            this.passwordBox.Location = new System.Drawing.Point(111, 130);
+            this.passwordBox.Location = new System.Drawing.Point(116, 120);
             this.passwordBox.MaxLength = 32767;
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.PasswordChar = '\0';
+            this.passwordBox.PasswordChar = '●';
             this.passwordBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.passwordBox.SelectedText = "";
             this.passwordBox.SelectionLength = 0;
@@ -103,12 +107,13 @@
             this.passwordBox.Size = new System.Drawing.Size(162, 36);
             this.passwordBox.TabIndex = 2;
             this.passwordBox.UseSelectable = true;
+            this.passwordBox.UseSystemPasswordChar = true;
             this.passwordBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.passwordBox.WaterMarkFont = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             // 
             // metroLabel1
             // 
-            this.metroLabel1.Location = new System.Drawing.Point(21, 84);
+            this.metroLabel1.Location = new System.Drawing.Point(26, 74);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(84, 36);
             this.metroLabel1.TabIndex = 3;
@@ -117,12 +122,43 @@
             // 
             // metroLabel2
             // 
-            this.metroLabel2.Location = new System.Drawing.Point(21, 130);
+            this.metroLabel2.Location = new System.Drawing.Point(26, 120);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(84, 36);
             this.metroLabel2.TabIndex = 4;
             this.metroLabel2.Text = "Пароль";
             this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // backLabel1
+            // 
+            this.backLabel1.Location = new System.Drawing.Point(116, 74);
+            this.backLabel1.Name = "backLabel1";
+            this.backLabel1.Size = new System.Drawing.Size(162, 36);
+            this.backLabel1.TabIndex = 5;
+            // 
+            // backLabel2
+            // 
+            this.backLabel2.Location = new System.Drawing.Point(116, 120);
+            this.backLabel2.Name = "backLabel2";
+            this.backLabel2.Size = new System.Drawing.Size(162, 36);
+            this.backLabel2.TabIndex = 6;
+            // 
+            // messageLabel
+            // 
+            this.messageLabel.AllowDrop = true;
+            this.messageLabel.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.messageLabel.Location = new System.Drawing.Point(23, 201);
+            this.messageLabel.Name = "messageLabel";
+            this.messageLabel.Size = new System.Drawing.Size(278, 33);
+            this.messageLabel.TabIndex = 7;
+            this.messageLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.Location = new System.Drawing.Point(178, 7);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(105, 23);
+            this.metroLabel4.TabIndex = 8;
             // 
             // AuthorizationForm
             // 
@@ -133,11 +169,15 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(324, 233);
+            this.Controls.Add(this.metroLabel4);
+            this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.loginBox);
+            this.Controls.Add(this.backLabel1);
+            this.Controls.Add(this.backLabel2);
             this.Name = "AuthorizationForm";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Red;
@@ -153,6 +193,10 @@
         private MetroFramework.Controls.MetroTextBox passwordBox;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel backLabel1;
+        private MetroFramework.Controls.MetroLabel backLabel2;
+        private MetroFramework.Controls.MetroLabel messageLabel;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
     }
 }
 
