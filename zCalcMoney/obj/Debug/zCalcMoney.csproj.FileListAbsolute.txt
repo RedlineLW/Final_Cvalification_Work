@@ -30,3 +30,6 @@ C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\bin\Debug\M
 C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.KoefForm.resources
 C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.dataForm.resources
 C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.InfoForm.resources
+C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.kadrForm.resources
+C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.AddForm.resources
+C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.EditForm.resources

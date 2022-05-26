@@ -30,6 +30,10 @@ namespace zCalcMoney
         public static string selected_worker { get; set; }
     }
 
+    static class EditWorker { 
+        public static int id { get; set; }
+    }
+
     public class Calc
     {
         public static void VivodRole(string rol, ComboBox combobox, string conn)
@@ -49,7 +53,7 @@ namespace zCalcMoney
             mysql_connection.Close();
         } // Метод вывода по фильтру должности машиниста и помощника машиниста
 
-        public static void Vivod(int ind, MetroFramework.Controls.MetroTextBox textbox1, MetroFramework.Controls.MetroTextBox textbox2, MetroFramework.Controls.MetroTextBox textbox3, MetroFramework.Controls.MetroTextBox textbox4, MetroFramework.Controls.MetroTextBox textbox5, MetroFramework.Controls.MetroTextBox textbox6, MetroFramework.Controls.MetroTextBox textbox7, MetroFramework.Controls.MetroTextBox textbox8, MetroFramework.Controls.MetroTextBox textbox9, string conn)
+        public static void Vivod(int ind, MetroFramework.Controls.MetroTextBox textbox1, MetroFramework.Controls.MetroTextBox textbox2, MetroFramework.Controls.MetroTextBox textbox3, MetroFramework.Controls.MetroTextBox textbox4, MetroFramework.Controls.MetroTextBox textbox5, MetroFramework.Controls.MetroTextBox textbox6, MetroFramework.Controls.MetroTextBox textbox7, MetroFramework.Controls.MetroTextBox textbox8, MetroFramework.Controls.MetroTextBox textbox9, MetroFramework.Controls.MetroTextBox textbox10, string conn)
         {
             MySqlConnection mysql_connection = new MySqlConnection(conn);
             MySqlCommand mysql_query = mysql_connection.CreateCommand();
@@ -68,6 +72,7 @@ namespace zCalcMoney
                 textbox7.Text = (mysql_result[7].ToString()).Replace(',', '.'); //prem_bez_avarii
                 textbox8.Text = (mysql_result[8].ToString()).Replace(',', '.'); //prem_za_let
                 textbox9.Text = (mysql_result[9].ToString()).Replace(',', '.'); //prem_za_hard
+                textbox10.Text = (mysql_result[10].ToString()).Replace(',', '.'); //prem_za_hard
             }
             mysql_result.Close();
             mysql_connection.Close();
@@ -88,6 +93,31 @@ namespace zCalcMoney
             {
                 MessageBox.Show("Неизвестная ошибка при вызове метода GetData! \n\n\n" + ex, "Ошибка");
             }
-        } // получение списка проведённых расчётов
+        } // получение списка
+    }
+
+    public class Kadr 
+    {
+        public static string GetDateSQLFormat(string dt)
+        {
+            if (dt != "  .  .")
+            {
+                string[] chr = new string[3];
+                string[] words = dt.Split('.');
+                int i = 0;
+                foreach (string word in words)
+                {
+                    chr[i] = word;
+                    i++;
+
+                }
+                string result = chr[2] + "-" + chr[1] + "-" + chr[0];
+                return result;
+            }
+            else
+            {
+                return "";
+            }
+        } // Функция получения даты из TextBox
     }
 }
