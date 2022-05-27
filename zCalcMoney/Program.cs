@@ -22,7 +22,9 @@ namespace zCalcMoney
     }
     static class Username
     {
-        public static string username { get; set; }
+        public static string userbuh { get; set; }
+
+        public static string userbrig { get; set; }
     }
 
     static class Worker 
@@ -36,18 +38,17 @@ namespace zCalcMoney
 
     public class Calc
     {
-        public static void VivodRole(string rol, ComboBox combobox, string conn)
+        public static void VivodRole(ComboBox combobox1, ComboBox combobox2, string conn)
         {
             MySqlConnection mysql_connection = new MySqlConnection(conn);
             MySqlCommand mysql_query = mysql_connection.CreateCommand();
-            mysql_query.CommandText = "SELECT fio FROM workers WHERE role = '" + rol + "';";
+            mysql_query.CommandText = "SELECT * FROM workers WHERE brigada = '" + combobox2.Text + "';";
             mysql_connection.Open();
             MySqlDataReader mysql_result;
             mysql_result = mysql_query.ExecuteReader();
-            combobox.Items.Clear();
             while (mysql_result.Read())
             {
-                combobox.Items.Add(mysql_result[0]);
+                combobox1.Items.Add(mysql_result[1]);
             }
             mysql_result.Close();
             mysql_connection.Close();

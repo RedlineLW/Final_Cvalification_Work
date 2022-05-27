@@ -43,13 +43,13 @@ namespace zCalcMoney
                 {
                     while (mysql_result.Read())
                     {
-                        //Заносим ФИО бухгалтера в общую переменную класса Program.cs
-                        Username.username = mysql_result[1].ToString();
                         if (mysql_result[2].ToString() == "Бухгалтер")
                         {
-                            //Переходим к основной форме расчёта ЗП и скрываем авторизацию
-                            MainForm go_to_main = new MainForm();
-                            go_to_main.Show();
+                            //Заносим ФИО бухгалтера в общую переменную класса Program.cs
+                            Username.userbuh = mysql_result[1].ToString();
+                            //Переносим бухгалтера в окно с расчётами
+                            dataForm go_to_data = new dataForm();
+                            go_to_data.Show();
                             this.Hide();
                         }
                         else if (mysql_result[2].ToString() == "Кадры") {
@@ -58,10 +58,17 @@ namespace zCalcMoney
                             this.Hide();
                         }
                         else if (mysql_result[2].ToString() == "Бригадир") {
-                            messageLabel.Text = "Вы бригадир.";
+                            //Заносим ФИО бригадира в общую переменную класса Program.cs
+                            Username.userbrig = mysql_result[1].ToString();
+                            //Переходим к основной форме расчёта ЗП и скрываем авторизацию
+                            MainForm go_to_main = new MainForm();
+                            go_to_main.Show();
+                            this.Hide();
                         }
                         else {
-                            messageLabel.Text = "Вы администратор.";
+                            AdminForm admin = new AdminForm();
+                            admin.Owner = this;
+                            admin.ShowDialog();
                         }
                         
                     }

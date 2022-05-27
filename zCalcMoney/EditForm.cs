@@ -46,7 +46,7 @@ namespace zCalcMoney
                     metroCheckBox1.Checked = false;
                 }
             }
-            MessageBox.Show("Дата из БД " + mysql_result[2].ToString());
+            //MessageBox.Show("Дата из БД " + mysql_result[2].ToString());
             mysql_result.Close();
             mysql_connection.Close();
         }

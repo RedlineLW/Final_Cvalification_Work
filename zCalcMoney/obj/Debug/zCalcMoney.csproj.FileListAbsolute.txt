@@ -33,3 +33,4 @@ C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\z
 C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.kadrForm.resources
 C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.AddForm.resources
 C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.EditForm.resources
+C:\Users\Пользователь\source\repos\zCalcMoney\zCalcMoney\obj\Debug\zCalcMoney.AdminForm.resources

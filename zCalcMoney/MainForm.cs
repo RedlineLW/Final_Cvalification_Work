@@ -37,10 +37,28 @@ namespace zCalcMoney
         double bezavarii;
         double zahard;
         double totalndfl;
+        int ow;
+        int wc;
+        string hw;
+        string brig;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Calc.VivodRole(role, metroComboBox1, conn);
+            MySqlConnection mysql_connection = new MySqlConnection(conn);
+            MySqlCommand mysql_query = mysql_connection.CreateCommand();
+            mysql_query.CommandText = "SELECT * FROM workers;";
+            mysql_connection.Open();
+            MySqlDataReader mysql_result;
+            mysql_result = mysql_query.ExecuteReader();
+            while (mysql_result.Read()) // заполняет список существующих бригад
+            {
+                if (brig != mysql_result[4].ToString()) {
+                    metroComboBox2.Items.Add(mysql_result[4]);
+                    brig = mysql_result[4].ToString();
+                }
+            }
+            mysql_result.Close();
+            mysql_connection.Close();
         }
 
         private void metroButton1_Click(object sender, EventArgs e) //расчитать
@@ -67,7 +85,7 @@ namespace zCalcMoney
             mysql_result.Close();
             mysql_connection.Close();
 
-            if (hourBox.Text != "" || hourNightBox.Text != "" || holHoursBox.Text != "") //если поля заполнены, считаем Зарплату
+            if (hourBox.Text != "" && hourNightBox.Text != "" && holHoursBox.Text != "") //если поля заполнены, считаем Зарплату
             {
                 metroLabel6.Text = "";
                 double hours = Convert.ToDouble(hourBox.Text);
@@ -81,6 +99,18 @@ namespace zCalcMoney
                 double totalHard;
                 try
                 {
+                    mysql_query.CommandText = "SELECT * FROM workers WHERE fio = '" + metroComboBox1.Text + "';";
+                    mysql_connection.Open();
+                    mysql_result = mysql_query.ExecuteReader();
+                    while (mysql_result.Read()) // вытаскиваем из БД данные о работнике
+                    {
+                        ow = Convert.ToInt32(mysql_result[5]);
+                        wc = Convert.ToInt32(mysql_result[6]);
+                        hw = mysql_result[7].ToString();
+                    }
+                    mysql_result.Close();
+                    mysql_connection.Close();
+
                     totalH = hours * avg_for_time; //ставка
                     totalNH = nighthours * (avg_for_time + koef_night_time); //ЗП за ночное время
                     totalClass = totalH * koef_class; //За классность
@@ -88,17 +118,17 @@ namespace zCalcMoney
                     totalNR = totalH * koef_night_razdrob;//ЗП за ночную раздробленную смену
                     totalHard = totalH * koef_hardwork;//ЗП за длинносоставные и тяжеловесящие составы
                     totalSUM = totalH + totalNH + totalClass + totalHH + totalNR + totalHard;//Подсчёт итоговой суммы
-                    if (checkBox1.Checked)
+                    if (ow >= 5)
                     { //премия за выслугу лет
                         totalSUM += totalH * prem_za_let;
                         zalet = totalH * prem_za_let;
                     }
-                    if (checkBox2.Checked)
+                    if (wc >= 5)
                     { //премия за безаварийность
                         totalSUM += totalH * prem_bez_avarii;
                         bezavarii = totalH * prem_bez_avarii;
                     }
-                    if (checkBox3.Checked)
+                    if (hw == "Да")
                     { //премия за работу на длинносоставных и тяжеловесящих составах
                         totalSUM += totalH * prem_za_hard;
                         zahard = totalH * prem_za_hard;
@@ -124,12 +154,12 @@ namespace zCalcMoney
             {
                 if (hourBox.Text != "" && hourNightBox.Text != "" && holHoursBox.Text != "")
                 {
-                    string fio_buh = Username.username;
+                    string fio_brig = Username.userbrig;
                     string fio_worker = metroComboBox1.Text;
                     MySqlConnection mysql_connection = new MySqlConnection(conn);
                     MySqlCommand mysql_query = mysql_connection.CreateCommand();
                     mysql_query.CommandText = "INSERT INTO storage (fio_buh, fio_worker, brig_worker, zp_worker, date, dayHours, nightHours, holHours, prem_za_let, prem_bez_avarii, prem_za_hard, ndfl) " +
-                    "VALUES ('" + fio_buh + "', '" + fio_worker + "', '" + brigada + "', " +
+                    "VALUES ('" + fio_brig + "', '" + fio_worker + "', '" + brigada + "', " +
                     "'" + (totalSUM.ToString()).Replace(',', '.') + "', " +
                     "'" + (DateTime.Now).ToString("yyyy-MM-dd hh:mm:ss") + "', " +
                     "'" + Convert.ToInt32(hourBox.Text) + "', " +
@@ -159,13 +189,6 @@ namespace zCalcMoney
             }
         }
 
-        private void metroButton3_Click(object sender, EventArgs e) //изменить коэфф-ы
-        {
-            KoefForm edit_koef = new KoefForm();
-            edit_koef.Owner = this;
-            edit_koef.ShowDialog(this);
-        }
-
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             MySqlConnection mysql_connection = new MySqlConnection(conn);
@@ -177,69 +200,11 @@ namespace zCalcMoney
             while (mysql_result.Read())
             {
                 //берём название бригады из БД
+                role = mysql_result[3].ToString();
                 brigada = mysql_result[4].ToString();
-                //Выводим данные о стаже и прочем о конкретном работнике
-                listBox1.Items.Clear();
-                listBox1.Items.Add("Стаж работы: " + mysql_result[5]);
-                listBox1.Items.Add("Лет без аварий: " + mysql_result[6]);
-                listBox1.Items.Add("Работает на тяжелых поездах: " + mysql_result[7]);
             }
             mysql_result.Close();
             mysql_connection.Close();
-        }
-
-        private void metroRadioButton1_CheckedChanged(object sender, EventArgs e) //выбран помощник машиниста
-        {
-            listBox1.Items.Clear();
-            metroComboBox1.Items.Clear();
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
-            checkBox3.Checked = false;
-            hourBox.Text = "";
-            hourNightBox.Text = "";
-            holHoursBox.Text = "";
-            metroLabel6.Text = "";
-            metroLabel5.Text = "Сумма: ";
-
-            if (metroRadioButton1.Checked)
-            {
-                role = "Помощник машиниста";
-                index = 1;
-            }
-            else
-            {
-                role = "Машинист";
-                index = 2;
-            }
-
-            Calc.VivodRole(role, metroComboBox1, conn);
-        }
-
-        private void metroRadioButton2_CheckedChanged(object sender, EventArgs e) //выбран машинист
-        {
-            listBox1.Items.Clear();
-            metroComboBox1.Items.Clear();
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
-            checkBox3.Checked = false;
-            hourBox.Text = "";
-            hourNightBox.Text = "";
-            holHoursBox.Text = "";
-            metroLabel6.Text = "";
-            metroLabel5.Text = "Сумма: ";
-
-            if (metroRadioButton2.Checked)
-            {
-                role = "Машинист";
-                index = 2;
-            }
-            else
-            {
-                role = "Помощник машиниста";
-                index = 1;
-            }
-
-            Calc.VivodRole(role, metroComboBox1, conn);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -247,11 +212,14 @@ namespace zCalcMoney
             Application.Exit();
         }
 
-        private void metroButton4_Click(object sender, EventArgs e)
+        private void metroComboBox2_SelectedIndexChanged(object sender, EventArgs e) //выбран другой сотрудник
         {
-            dataForm show_data = new dataForm();
-            show_data.Owner = this;
-            show_data.ShowDialog(this);
-        } // база данных
+            hourBox.Text = "";
+            hourNightBox.Text = "";
+            holHoursBox.Text = "";
+            metroLabel6.Text = "";
+            metroLabel5.Text = "Сумма: ";
+            Calc.VivodRole(metroComboBox1, metroComboBox2, conn);
+        }
     }
 }
