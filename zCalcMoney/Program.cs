@@ -80,6 +80,23 @@ namespace zCalcMoney
         } // метод вывода коэффициентов
     }
 
+    class Password
+    {
+        public string GetPass()
+        {
+            int[] arr = new int[8]; // сделаем длину пароля в 16 символов
+            Random rnd = new Random();
+            string password = "";
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = rnd.Next(33, 125);
+                password += (char)arr[i];
+            }
+            return password;
+        }
+    }
+
     public class ShowData 
     {
         public static void GetList(string selectCommand, string conn, BindingSource bs_list_tasks, System.Data.DataTable dt_list_tasks)

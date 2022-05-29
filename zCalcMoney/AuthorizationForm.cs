@@ -48,8 +48,8 @@ namespace zCalcMoney
                             //Заносим ФИО бухгалтера в общую переменную класса Program.cs
                             Username.userbuh = mysql_result[1].ToString();
                             //Переносим бухгалтера в окно с расчётами
-                            dataForm go_to_data = new dataForm();
-                            go_to_data.Show();
+                            MainForm go_to_main = new MainForm();
+                            go_to_main.Show();
                             this.Hide();
                         }
                         else if (mysql_result[2].ToString() == "Кадры") {
@@ -57,18 +57,11 @@ namespace zCalcMoney
                             go_to_kadr.Show();
                             this.Hide();
                         }
-                        else if (mysql_result[2].ToString() == "Бригадир") {
-                            //Заносим ФИО бригадира в общую переменную класса Program.cs
-                            Username.userbrig = mysql_result[1].ToString();
-                            //Переходим к основной форме расчёта ЗП и скрываем авторизацию
-                            MainForm go_to_main = new MainForm();
-                            go_to_main.Show();
-                            this.Hide();
-                        }
                         else {
                             AdminForm admin = new AdminForm();
                             admin.Owner = this;
                             admin.ShowDialog();
+                            this.Hide();
                         }
                         
                     }

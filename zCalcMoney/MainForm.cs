@@ -154,12 +154,12 @@ namespace zCalcMoney
             {
                 if (hourBox.Text != "" && hourNightBox.Text != "" && holHoursBox.Text != "")
                 {
-                    string fio_brig = Username.userbrig;
+                    string fio_buh = Username.userbuh;
                     string fio_worker = metroComboBox1.Text;
                     MySqlConnection mysql_connection = new MySqlConnection(conn);
                     MySqlCommand mysql_query = mysql_connection.CreateCommand();
                     mysql_query.CommandText = "INSERT INTO storage (fio_buh, fio_worker, brig_worker, zp_worker, date, dayHours, nightHours, holHours, prem_za_let, prem_bez_avarii, prem_za_hard, ndfl) " +
-                    "VALUES ('" + fio_brig + "', '" + fio_worker + "', '" + brigada + "', " +
+                    "VALUES ('" + fio_buh + "', '" + fio_worker + "', '" + brigada + "', " +
                     "'" + (totalSUM.ToString()).Replace(',', '.') + "', " +
                     "'" + (DateTime.Now).ToString("yyyy-MM-dd hh:mm:ss") + "', " +
                     "'" + Convert.ToInt32(hourBox.Text) + "', " +
@@ -220,6 +220,12 @@ namespace zCalcMoney
             metroLabel6.Text = "";
             metroLabel5.Text = "Сумма: ";
             Calc.VivodRole(metroComboBox1, metroComboBox2, conn);
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            dataForm go_to_data = new dataForm();
+            go_to_data.Show();
         }
     }
 }

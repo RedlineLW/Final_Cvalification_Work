@@ -45,6 +45,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.metroComboBox2 = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -233,7 +234,7 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(442, 342);
+            this.pictureBox1.Location = new System.Drawing.Point(442, 384);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(67, 36);
             this.pictureBox1.TabIndex = 22;
@@ -259,12 +260,23 @@
             this.metroLabel8.Text = "Бригада";
             this.metroLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // metroButton3
+            // 
+            this.metroButton3.Location = new System.Drawing.Point(22, 384);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(145, 36);
+            this.metroButton3.TabIndex = 25;
+            this.metroButton3.Text = "База данных";
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(532, 395);
+            this.ClientSize = new System.Drawing.Size(532, 443);
+            this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.metroComboBox2);
             this.Controls.Add(this.metroLabel8);
             this.Controls.Add(this.pictureBox1);
@@ -309,5 +321,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private MetroFramework.Controls.MetroComboBox metroComboBox2;
         private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroButton metroButton3;
     }
 }
