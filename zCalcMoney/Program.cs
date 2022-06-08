@@ -36,6 +36,11 @@ namespace zCalcMoney
         public static int id { get; set; }
     }
 
+    static class EditBrigada
+    {
+        public static int id { get; set; }
+    }
+
     public class Calc
     {
         public static void VivodRole(ComboBox combobox1, ComboBox combobox2, string conn)
@@ -54,7 +59,7 @@ namespace zCalcMoney
             mysql_connection.Close();
         } // Метод вывода по фильтру должности машиниста и помощника машиниста
 
-        public static void Vivod(int ind, MetroFramework.Controls.MetroTextBox textbox1, MetroFramework.Controls.MetroTextBox textbox2, MetroFramework.Controls.MetroTextBox textbox3, MetroFramework.Controls.MetroTextBox textbox4, MetroFramework.Controls.MetroTextBox textbox5, MetroFramework.Controls.MetroTextBox textbox6, MetroFramework.Controls.MetroTextBox textbox7, MetroFramework.Controls.MetroTextBox textbox8, MetroFramework.Controls.MetroTextBox textbox9, MetroFramework.Controls.MetroTextBox textbox10, string conn)
+        public static void Vivod(int ind, MetroFramework.Controls.MetroTextBox textbox1, MetroFramework.Controls.MetroTextBox textbox2, MetroFramework.Controls.MetroTextBox textbox3, MetroFramework.Controls.MetroTextBox textbox4, MetroFramework.Controls.MetroTextBox textbox5, MetroFramework.Controls.MetroTextBox textbox6, MetroFramework.Controls.MetroTextBox textbox9, string conn)
         {
             MySqlConnection mysql_connection = new MySqlConnection(conn);
             MySqlCommand mysql_query = mysql_connection.CreateCommand();
@@ -70,10 +75,7 @@ namespace zCalcMoney
                 textbox4.Text = (mysql_result[4].ToString()).Replace(',', '.'); //koef_holidays
                 textbox5.Text = (mysql_result[5].ToString()).Replace(',', '.'); //koef_night_razdrob
                 textbox6.Text = (mysql_result[6].ToString()).Replace(',', '.'); //koef_hardwork
-                textbox7.Text = (mysql_result[7].ToString()).Replace(',', '.'); //prem_bez_avarii
-                textbox8.Text = (mysql_result[8].ToString()).Replace(',', '.'); //prem_za_let
-                textbox9.Text = (mysql_result[9].ToString()).Replace(',', '.'); //prem_za_hard
-                textbox10.Text = (mysql_result[10].ToString()).Replace(',', '.'); //prem_za_hard
+                textbox9.Text = (mysql_result[7].ToString()).Replace(',', '.'); //prem_za_hard
             }
             mysql_result.Close();
             mysql_connection.Close();

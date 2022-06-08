@@ -32,7 +32,6 @@
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.buhButton = new MetroFramework.Controls.MetroButton();
             this.kadrButton = new MetroFramework.Controls.MetroButton();
-            this.brigButton = new MetroFramework.Controls.MetroButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
@@ -54,7 +53,7 @@
             // 
             // buhButton
             // 
-            this.buhButton.Location = new System.Drawing.Point(33, 100);
+            this.buhButton.Location = new System.Drawing.Point(149, 100);
             this.buhButton.Name = "buhButton";
             this.buhButton.Size = new System.Drawing.Size(225, 30);
             this.buhButton.TabIndex = 23;
@@ -64,23 +63,13 @@
             // 
             // kadrButton
             // 
-            this.kadrButton.Location = new System.Drawing.Point(264, 100);
+            this.kadrButton.Location = new System.Drawing.Point(380, 100);
             this.kadrButton.Name = "kadrButton";
             this.kadrButton.Size = new System.Drawing.Size(225, 30);
             this.kadrButton.TabIndex = 24;
             this.kadrButton.Text = "Перейди к окну кадров";
             this.kadrButton.UseSelectable = true;
             this.kadrButton.Click += new System.EventHandler(this.kadrButton_Click);
-            // 
-            // brigButton
-            // 
-            this.brigButton.Location = new System.Drawing.Point(495, 100);
-            this.brigButton.Name = "brigButton";
-            this.brigButton.Size = new System.Drawing.Size(225, 30);
-            this.brigButton.TabIndex = 25;
-            this.brigButton.Text = "Перейти к окну бригадира";
-            this.brigButton.UseSelectable = true;
-            this.brigButton.Click += new System.EventHandler(this.brigButton_Click);
             // 
             // pictureBox1
             // 
@@ -94,7 +83,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(264, 156);
+            this.textBox1.Location = new System.Drawing.Point(264, 155);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(456, 22);
             this.textBox1.TabIndex = 27;
@@ -112,7 +101,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(53, 158);
+            this.metroLabel1.Location = new System.Drawing.Point(53, 157);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(165, 20);
             this.metroLabel1.TabIndex = 30;
@@ -121,7 +110,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(55, 184);
+            this.metroLabel2.Location = new System.Drawing.Point(55, 183);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(163, 20);
             this.metroLabel2.TabIndex = 31;
@@ -129,14 +118,14 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(264, 184);
+            this.textBox2.Location = new System.Drawing.Point(264, 183);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(456, 22);
             this.textBox2.TabIndex = 32;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(264, 212);
+            this.textBox3.Location = new System.Drawing.Point(264, 211);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(456, 22);
             this.textBox3.TabIndex = 34;
@@ -144,7 +133,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(108, 214);
+            this.metroLabel3.Location = new System.Drawing.Point(108, 213);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(48, 20);
             this.metroLabel3.TabIndex = 33;
@@ -174,7 +163,6 @@
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.brigButton);
             this.Controls.Add(this.kadrButton);
             this.Controls.Add(this.buhButton);
             this.Controls.Add(this.metroLabel7);
@@ -195,7 +183,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroButton buhButton;
         private MetroFramework.Controls.MetroButton kadrButton;
-        private MetroFramework.Controls.MetroButton brigButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private MetroFramework.Controls.MetroButton metroButton1;

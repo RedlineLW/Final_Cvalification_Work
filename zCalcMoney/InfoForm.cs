@@ -25,7 +25,6 @@ namespace zCalcMoney
         int nightHours;
         int holHours;
         double zalet;
-        double bezavarii;
         double zahard;
         double ndfl;
 
@@ -42,26 +41,24 @@ namespace zCalcMoney
                 nightHours = Convert.ToInt32(mysql_result[7]);
                 holHours = Convert.ToInt32(mysql_result[8]);
                 zalet = Convert.ToDouble(mysql_result[9]);
-                bezavarii = Convert.ToDouble(mysql_result[10]);
-                zahard = Convert.ToDouble(mysql_result[11]);
-                ndfl = Convert.ToDouble(mysql_result[12]);
+                zahard = Convert.ToDouble(mysql_result[10]);
+                ndfl = Convert.ToDouble(mysql_result[11]);
             }
             mysql_result.Close();
             conn.Close();
 
             metroLabel1.Text = "Премия за выслугу лет = "+ zalet + " рублей.";
-            metroLabel2.Text = "Премия за безаварийность = " + bezavarii + " рублей.";
-            metroLabel3.Text = "Премия за работу на тяж. и длин.составах = " + zahard + " рублей.";
+            metroLabel3.Text = "Премия за работу на тяж. составах = " + zahard + " рублей.";
             metroLabel5.Text = "Налоговые вычеты = " + ndfl + " рублей.";
 
-            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
 
-            chart1.Series[0].Points.AddY(Convert.ToDouble(dayHours.ToString()));
-            chart1.Series[0].Points.AddY(Convert.ToDouble(nightHours.ToString()));
-            chart1.Series[0].Points.AddY(Convert.ToDouble(holHours.ToString()));
-            chart1.Series[0].Points[0].LegendText = "Дневные часы";
+            chart1.Series[0].Points.Add(Convert.ToDouble(dayHours));
+            chart1.Series[0].Points.Add(Convert.ToDouble(nightHours));
+            chart1.Series[0].Points.Add(Convert.ToDouble(holHours));
+            /* chart1.Series[0].Points[0].LegendText = "Дневные часы";
             chart1.Series[0].Points[1].LegendText = "Ночные часы";
-            chart1.Series[0].Points[2].LegendText = "Праздничные часы";
+            chart1.Series[0].Points[2].LegendText = "Праздничные часы"; */
         }
     }
 }

@@ -39,6 +39,7 @@
             this.deleteButton = new MetroFramework.Controls.MetroButton();
             this.addButton = new MetroFramework.Controls.MetroButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.brigadiButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +105,7 @@
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(350, 397);
+            this.updateButton.Location = new System.Drawing.Point(276, 397);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(105, 30);
             this.updateButton.TabIndex = 25;
@@ -114,7 +115,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(484, 397);
+            this.deleteButton.Location = new System.Drawing.Point(538, 397);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(105, 30);
             this.deleteButton.TabIndex = 26;
@@ -124,7 +125,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(214, 397);
+            this.addButton.Location = new System.Drawing.Point(140, 397);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(105, 30);
             this.addButton.TabIndex = 27;
@@ -142,11 +143,22 @@
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
+            // brigadiButton
+            // 
+            this.brigadiButton.Location = new System.Drawing.Point(410, 397);
+            this.brigadiButton.Name = "brigadiButton";
+            this.brigadiButton.Size = new System.Drawing.Size(105, 30);
+            this.brigadiButton.TabIndex = 29;
+            this.brigadiButton.Text = "Бригады";
+            this.brigadiButton.UseSelectable = true;
+            this.brigadiButton.Click += new System.EventHandler(this.brigadiButton_Click);
+            // 
             // kadrForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.brigadiButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.deleteButton);
@@ -175,5 +187,6 @@
         private MetroFramework.Controls.MetroButton deleteButton;
         private MetroFramework.Controls.MetroButton addButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Controls.MetroButton brigadiButton;
     }
 }

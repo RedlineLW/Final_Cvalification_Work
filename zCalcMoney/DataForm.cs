@@ -32,7 +32,7 @@ namespace zCalcMoney
             //Запрос для формирования списка расчётов
             commandString = "SELECT " +
             "storage.id, " + //0
-            "storage.fio_buh AS 'Бригадир', " + //1
+            "storage.fio_buh AS 'Бухгалтер', " + //1
             "storage.fio_worker AS 'Сотрудник', " + //2
             "storage.brig_worker AS 'Бригада', " + //3
             "storage.zp_worker AS 'Зарплата', " + //4
@@ -142,13 +142,6 @@ namespace zCalcMoney
             list_tasks_adapter.Update((DataTable)bs_list_tasks.DataSource);
             metroGrid1.Update();
         } // Обновление
-
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            KoefForm go_to_koef = new KoefForm();
-            go_to_koef.Owner = this;
-            go_to_koef.ShowDialog(this);
-        }
 
         private void dataForm_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -17,7 +17,9 @@ namespace zCalcMoney
         {
             InitializeComponent();
         }
-
+        int emp; // переменная для хранения даты трудоустройства сотрудника
+        int now; // переменная для хранения нынешней даты
+        string p = "0"; // переменная для хранения значения процентов
         string conn = "server = chuc.caseum.ru; port = 33333; user = st_2_18_23; database = is_2_18_st23_VKR; password = 51922291;";
         string role = "Машинист";
         double index = 2;
@@ -34,27 +36,35 @@ namespace zCalcMoney
         string brigada = "Бригада";
         double totalSUM;
         double zalet;
-        double bezavarii;
         double zahard;
         double totalndfl;
+        double totalH;
+        double totalNH;
+        double totalClass;
+        double totalHH;
+        double totalNR;
+        double totalHard;
+        double hours;
+        double nighthours;
+        double holydayhours;
         int ow;
-        int wc;
         string hw;
         string brig;
+        string a;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             MySqlConnection mysql_connection = new MySqlConnection(conn);
             MySqlCommand mysql_query = mysql_connection.CreateCommand();
-            mysql_query.CommandText = "SELECT * FROM workers;";
+            mysql_query.CommandText = "SELECT * FROM brigadi;";
             mysql_connection.Open();
             MySqlDataReader mysql_result;
             mysql_result = mysql_query.ExecuteReader();
             while (mysql_result.Read()) // заполняет список существующих бригад
             {
-                if (brig != mysql_result[4].ToString()) {
-                    metroComboBox2.Items.Add(mysql_result[4]);
-                    brig = mysql_result[4].ToString();
+                if (brig != mysql_result[1].ToString()) {
+                    metroComboBox2.Items.Add(mysql_result[1]);
+                    brig = mysql_result[1].ToString();
                 }
             }
             mysql_result.Close();
@@ -77,10 +87,8 @@ namespace zCalcMoney
                 koef_holidays = Convert.ToDouble(mysql_result[4]);
                 koef_night_razdrob = Convert.ToDouble(mysql_result[5]);
                 koef_hardwork = Convert.ToDouble(mysql_result[6]);
-                prem_bez_avarii = Convert.ToDouble(mysql_result[7]);
-                prem_za_let = Convert.ToDouble(mysql_result[8]);
-                prem_za_hard = Convert.ToDouble(mysql_result[9]);
-                ndfl = Convert.ToDouble(mysql_result[10]);
+                prem_za_hard = Convert.ToDouble(mysql_result[7]);
+                ndfl = Convert.ToDouble(mysql_result[8]);
             }
             mysql_result.Close();
             mysql_connection.Close();
@@ -88,45 +96,62 @@ namespace zCalcMoney
             if (hourBox.Text != "" && hourNightBox.Text != "" && holHoursBox.Text != "") //если поля заполнены, считаем Зарплату
             {
                 metroLabel6.Text = "";
-                double hours = Convert.ToDouble(hourBox.Text);
-                double nighthours = Convert.ToDouble(hourNightBox.Text);
-                double holydayhours = Convert.ToDouble(holHoursBox.Text);
-                double totalH;
-                double totalNH;
-                double totalClass;
-                double totalHH;
-                double totalNR;
-                double totalHard;
+                hours = Convert.ToDouble(hourBox.Text);
+                nighthours = Convert.ToDouble(hourNightBox.Text);
+                holydayhours = Convert.ToDouble(holHoursBox.Text);
                 try
                 {
                     mysql_query.CommandText = "SELECT * FROM workers WHERE fio = '" + metroComboBox1.Text + "';";
                     mysql_connection.Open();
                     mysql_result = mysql_query.ExecuteReader();
+                    now = Convert.ToInt32((DateTime.Now).ToString("yyyy"));
                     while (mysql_result.Read()) // вытаскиваем из БД данные о работнике
                     {
-                        ow = Convert.ToInt32(mysql_result[5]);
-                        wc = Convert.ToInt32(mysql_result[6]);
-                        hw = mysql_result[7].ToString();
+                        a = (mysql_result[3].ToString()); //Получаем год трудоустройства
+                        hw = mysql_result[6].ToString();
                     }
+                    a = a.Substring(6, a.Length - 14);
+                    emp = Convert.ToInt32(a);
                     mysql_result.Close();
                     mysql_connection.Close();
-
+                    ow = now - emp;
                     totalH = hours * avg_for_time; //ставка
                     totalNH = nighthours * (avg_for_time + koef_night_time); //ЗП за ночное время
                     totalClass = totalH * koef_class; //За классность
                     totalHH = holydayhours * avg_for_time * koef_holidays; //ЗП за праздники
-                    totalNR = totalH * koef_night_razdrob;//ЗП за ночную раздробленную смену
+                    totalNR = totalNH * koef_night_razdrob;//ЗП за ночную раздробленную смену
                     totalHard = totalH * koef_hardwork;//ЗП за длинносоставные и тяжеловесящие составы
                     totalSUM = totalH + totalNH + totalClass + totalHH + totalNR + totalHard;//Подсчёт итоговой суммы
-                    if (ow >= 5)
-                    { //премия за выслугу лет
-                        totalSUM += totalH * prem_za_let;
-                        zalet = totalH * prem_za_let;
+                    if (ow >= 2 && ow < 5) { // определяем размер премии за выслугу лет
+                        totalSUM += totalH * 0.10;
+                        zalet = totalH * 0.10;
+                        p = "10";
                     }
-                    if (wc >= 5)
-                    { //премия за безаварийность
-                        totalSUM += totalH * prem_bez_avarii;
-                        bezavarii = totalH * prem_bez_avarii;
+                    else if (ow >= 5 && ow < 10) {
+                        totalSUM += totalH * 0.15;
+                        zalet = totalH * 0.15;
+                        p = "15";
+                    }
+                    else if (ow >= 10 && ow < 15) {
+                        totalSUM += totalH * 0.20;
+                        zalet = totalH * 0.20;
+                        p = "20";
+                    }
+                    else if (ow >= 15 && ow < 20)
+                    {
+                        totalSUM += totalH * 0.25;
+                        zalet = totalH * 0.25;
+                        p = "25";
+                    }
+                    else if (ow >= 20 && ow < 25) {
+                        totalSUM += totalH * 0.30;
+                        zalet = totalH * 0.30;
+                        p = "30";
+                    }
+                    else if (ow >= 25) {
+                        totalSUM += totalH * 0.40;
+                        zalet = totalH * 0.40;
+                        p = "40";
                     }
                     if (hw == "Да")
                     { //премия за работу на длинносоставных и тяжеловесящих составах
@@ -137,9 +162,10 @@ namespace zCalcMoney
                     totalSUM -= totalndfl; // вычитаем из зарплаты НДФЛ
                     metroLabel5.Text = "Сумма: " + totalSUM.ToString() + " Руб.";
                 }
-                catch
+                catch (Exception ex)
                 {
-                    metroLabel6.Text = "Произошла ошибка, проверьте правильность введённых данных и коэффециенты!";
+                    MessageBox.Show(a);
+                    MessageBox.Show($"Исключение: {ex.Message} /n Метод: {ex.TargetSite} /n Трассировка стека: {ex.StackTrace}");
                 }
             }
             else
@@ -158,7 +184,7 @@ namespace zCalcMoney
                     string fio_worker = metroComboBox1.Text;
                     MySqlConnection mysql_connection = new MySqlConnection(conn);
                     MySqlCommand mysql_query = mysql_connection.CreateCommand();
-                    mysql_query.CommandText = "INSERT INTO storage (fio_buh, fio_worker, brig_worker, zp_worker, date, dayHours, nightHours, holHours, prem_za_let, prem_bez_avarii, prem_za_hard, ndfl) " +
+                    mysql_query.CommandText = "INSERT INTO storage (fio_buh, fio_worker, brig_worker, zp_worker, date, dayHours, nightHours, holHours, prem_za_let, prem_za_hard, ndfl) " +
                     "VALUES ('" + fio_buh + "', '" + fio_worker + "', '" + brigada + "', " +
                     "'" + (totalSUM.ToString()).Replace(',', '.') + "', " +
                     "'" + (DateTime.Now).ToString("yyyy-MM-dd hh:mm:ss") + "', " +
@@ -166,7 +192,6 @@ namespace zCalcMoney
                     "'" + Convert.ToInt32(hourNightBox.Text) + "', " +
                     "'" + Convert.ToInt32(holHoursBox.Text) + "', " +
                     "'" + (zalet.ToString().Replace(',', '.')) + "', " +
-                    "'" + (bezavarii.ToString().Replace(',','.')) + "', " +
                     "'" + (zahard.ToString().Replace(',','.')) + "', " +
                     "'" + (totalndfl.ToString().Replace(',', '.')) + "');";
                     mysql_connection.Open();
@@ -191,6 +216,11 @@ namespace zCalcMoney
 
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            hourBox.Text = "";
+            hourNightBox.Text = "";
+            holHoursBox.Text = "";
+            metroLabel6.Text = "";
+            metroLabel5.Text = "Сумма: ";
             MySqlConnection mysql_connection = new MySqlConnection(conn);
             MySqlCommand mysql_query = mysql_connection.CreateCommand();
             mysql_query.CommandText = "SELECT * FROM workers WHERE fio = '" + metroComboBox1.Text + "';";
@@ -199,9 +229,8 @@ namespace zCalcMoney
             mysql_result = mysql_query.ExecuteReader();
             while (mysql_result.Read())
             {
-                //берём название бригады из БД
-                role = mysql_result[3].ToString();
-                brigada = mysql_result[4].ToString();
+                //берём название должности
+                role = mysql_result[4].ToString();
             }
             mysql_result.Close();
             mysql_connection.Close();
@@ -214,18 +243,45 @@ namespace zCalcMoney
 
         private void metroComboBox2_SelectedIndexChanged(object sender, EventArgs e) //выбран другой сотрудник
         {
-            hourBox.Text = "";
-            hourNightBox.Text = "";
-            holHoursBox.Text = "";
-            metroLabel6.Text = "";
-            metroLabel5.Text = "Сумма: ";
-            Calc.VivodRole(metroComboBox1, metroComboBox2, conn);
+            metroComboBox1.Items.Clear();
+            MySqlConnection mysql_connection = new MySqlConnection(conn);
+            MySqlCommand mysql_query = mysql_connection.CreateCommand();
+            mysql_query.CommandText = "SELECT * FROM workers WHERE brigada = '" + metroComboBox2.Text + "';";
+            mysql_connection.Open();
+            MySqlDataReader mysql_result;
+            mysql_result = mysql_query.ExecuteReader();
+            while (mysql_result.Read()) // заполняет список сотрудников из данной бригады
+            {
+                metroComboBox1.Items.Add(mysql_result[1]);
+            }
+            mysql_result.Close();
+            mysql_connection.Close();
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
             dataForm go_to_data = new dataForm();
             go_to_data.Show();
-        }
+        } // перейти к Базе Данных с расчётами
+
+        private void metroButton4_Click(object sender, EventArgs e)
+        {
+            if (hourBox.Text != "" && hourNightBox.Text != "" && holHoursBox.Text != "") {
+                MessageBox.Show("Сотрудник: " + metroComboBox1.Text + " \n " +
+                    "Отработал " + hourBox.Text + " часов днём и заработал " + totalH + " рублей \n " +
+                    hourNightBox.Text + " часов ночью и заработал " + totalNH + " рублей \n " +
+                    holHoursBox.Text + " часов в выходные и заработал " + totalHH + " рублей \n " +
+                    "Выслуга лет за " + ow + " лет составляет " + p + " % (" + zalet + " рублей) \n" +
+                    "За работу на тяж. поездах " + totalHard + " рублей (если работает) \n" +
+                    "Вычеты по НДФЛ составляют " + totalndfl + " рублей.", "Подробности");
+            }
+        } // подробнее
+
+        private void metroButton5_Click(object sender, EventArgs e)
+        {
+            KoefForm go_to_koef = new KoefForm();
+            go_to_koef.Owner = this;
+            go_to_koef.ShowDialog(this);
+        } // изменить коэффициенты
     }
 }

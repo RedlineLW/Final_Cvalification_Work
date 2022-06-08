@@ -83,6 +83,30 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrigadiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrigadiForm.Designer.cs">
+      <DependentUpon>BrigadiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditBrigadaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBrigadaForm.Designer.cs">
+      <DependentUpon>EditBrigadaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddBrigadaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBrigadaForm.Designer.cs">
+      <DependentUpon>AddBrigadaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryForm.Designer.cs">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +150,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BrigadiForm.resx">
+      <DependentUpon>BrigadiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBrigadaForm.resx">
+      <DependentUpon>EditBrigadaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddBrigadaForm.resx">
+      <DependentUpon>AddBrigadaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryForm.resx">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

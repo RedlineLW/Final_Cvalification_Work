@@ -31,17 +31,10 @@ namespace zCalcMoney
         }
         private void buhButton_Click(object sender, EventArgs e)
         {
-            dataForm data = new dataForm();
-            data.Owner = this;
-            data.ShowDialog();
-        } // переход к окну бухгалтера
-
-        private void brigButton_Click(object sender, EventArgs e)
-        {
             MainForm brig = new MainForm();
             brig.Owner = this;
             brig.ShowDialog();
-        } // переход к онку бригадира
+        } // переход к окну бухгалтера
 
         private void kadrButton_Click(object sender, EventArgs e)
         {
